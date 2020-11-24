@@ -16,25 +16,25 @@ object PreferencesRepository {
     private const val APP_THEME = "APP_THEME"
 
     private val prefs: SharedPreferences
-            by lazy { PreferenceManager.getDefaultSharedPreferences(App.applicationContext()) }
+            by lazy {PreferenceManager.getDefaultSharedPreferences(App.applicationContext())}
 
     fun saveAppTheme(theme: Int) {
         putValue(APP_THEME to theme)
     }
 
-    fun getAppTheme(): Int = prefs.getInt(APP_THEME, AppCompatDelegate.MODE_NIGHT_NO)
+    fun getAppTheme(): Int = prefs.getInt(APP_THEME,AppCompatDelegate.MODE_NIGHT_NO)
 
     fun getProfile(): Profile = Profile(
-            prefs.getString(FIRST_NAME, "") ?: "",
-            prefs.getString(LAST_NAME, "") ?: "",
-            prefs.getString(ABOUT, "") ?: "",
-            prefs.getString(REPOSITORY, "") ?: "",
-            prefs.getInt(RATING, 0),
-            prefs.getInt(RESPECT, 0)
+        prefs.getString(FIRST_NAME,"")?:"",
+        prefs.getString(LAST_NAME,"")?:"",
+        prefs.getString(ABOUT,"")?:"",
+        prefs.getString(REPOSITORY,"")?:"",
+        prefs.getInt(RATING,0),
+        prefs.getInt(RESPECT,0)
     )
 
     fun saveProfile(profile: Profile) {
-        with(profile) {
+        with(profile){
             putValue(FIRST_NAME to firstName)
             putValue(LAST_NAME to lastName)
             putValue(ABOUT to about)
@@ -44,12 +44,12 @@ object PreferencesRepository {
         }
     }
 
-    private fun putValue(pair: Pair<String, Any>) = with(prefs.edit()) {
+    private fun putValue(pair: Pair<String,Any>) = with (prefs.edit()){
         val key = pair.first
         val value = pair.second
         when (value) {
-            is String -> putString(key, value)
-            is Int -> putInt(key, value)
+            is String -> putString(key,value)
+            is Int -> putInt(key,value)
             is Boolean -> putBoolean(key, value)
             is Long -> putLong(key, value)
             is Float -> putFloat(key, value)

@@ -5,9 +5,7 @@ import android.content.Context
 import android.graphics.Rect
 import android.util.TypedValue
 import android.view.View
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-import kotlin.math.roundToInt
 
 fun Activity.hideKeyboard(){
     val inputMethodManager = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -28,7 +26,7 @@ fun Activity.isKeyboardOpen(): Boolean {
     val visibleBounds = Rect()
     this.getRootView().getWindowVisibleDisplayFrame(visibleBounds)
     val heightDiff = getRootView().height - visibleBounds.height()
-    val marginOfError = this.convertDpToPx(50F).roundToInt()
+    val marginOfError = Math.round(this.convertDpToPx(50F))
     return heightDiff > marginOfError
 }
 
